@@ -7,32 +7,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SalesReader {
+public class ProductReader {
     static String category;
     static String productName;
     static int productQuantity;
     static double productPrice;
+    public static List<Product> myProducts;
 
-    static Products products;
-    static List<Products> totalProducts = new ArrayList<>();
-    public static List<Products> myProducts;
-
-    static {
-        try {
-            myProducts = myProductFile();
-        } catch (IOException e) {
-               throw new RuntimeException(e);
-
-        }
+    public  List<Product> getMyProducts() {
+        return myProducts;
     }
 
+    static {
+            myProducts = myProductFile();
+    }
 
-    public static List myProductFile() throws IOException {
-
-
-
-        String path = "/Users/decagon/Documents/Conveniencestore/src/main/java/FoodSales (1) (2).csv";
-        String line = "";
+//A method that reads in my file and adds it into my products as an arraylist
+    public static List<Product> myProductFile()  {
+         Product products;
+         List<Product> totalProducts = new ArrayList<>();
+         String path = "/Users/decagon/Documents/Conveniencestore/src/main/java/model/FoodSales (1) (2).csv";
+         String line = "";
 
         try {
            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
@@ -43,11 +38,11 @@ public class SalesReader {
                  productName = productData[1].toLowerCase();
                  productQuantity = Integer.parseInt(productData[2]);
                  productPrice = Double.parseDouble(productData[3]);
-                products = new Products(category,productName,productQuantity,productPrice);
+                products = new Product(category,productName,productQuantity,productPrice);
                 if(!totalProducts.contains(products)){
                     totalProducts.add(products);
                 }else {
-                    Products j = totalProducts.get(totalProducts.indexOf(products));
+                    Product j = totalProducts.get(totalProducts.indexOf(products));
 
                     j.setProductQuantity(j.getProductQuantity() + Integer.parseInt(productData[2]));
                 }

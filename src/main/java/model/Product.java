@@ -1,19 +1,37 @@
 package model;
 
 
+import java.util.Comparator;
 import java.util.Objects;
 
-public class Products {
+public class Product {
 
     private String category;
    private String productName;
    private int productQuantity;
    private double productPrice;
 
-    public Products(String category, String productName, int productQuantity, double productPrice) {
+
+
+    public Product(String category, String productName, int productQuantity, double productPrice) {
         this.category = category;
         this.productName = productName;
         this.productQuantity = productQuantity;
+        this.productPrice = productPrice;
+    }
+
+    public Product() {
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 
@@ -31,7 +49,7 @@ public class Products {
         this.productQuantity = productQuantity;
     }
 
-    public int getProductQuantity() {
+    public  int getProductQuantity() {
         return productQuantity;
     }
 
@@ -39,10 +57,10 @@ public class Products {
         return productPrice;
     }
 
-    public void setProductPrice(double productPrice) {
-        this.productPrice = productPrice;
-    }
 
+
+// The toString method is used to return string representation into an object
+    // my products where previously printing out as addresses
     @Override
     public String toString() {
         return "Products{" +
@@ -52,12 +70,13 @@ public class Products {
                 ", productPrice=" + productPrice +
                 "}\n";
     }
+/// The hashcode and equal  method is comparing the objects  values (objects)
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Products products = (Products) o;
+        Product products = (Product) o;
         return Objects.equals(productName, products.productName);
     }
 
